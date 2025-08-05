@@ -1,5 +1,5 @@
 import { Edit, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
 import toast from "react-hot-toast";
@@ -21,6 +21,8 @@ const WriteArticle = () => {
 
   const { getToken } = useAuth();
 
+  const articleRef = useRef(null);
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
@@ -40,6 +42,11 @@ const WriteArticle = () => {
 
       if (data.success) {
         setContent(data.content);
+        setTimeout(() => {
+          if (articleRef.current) {
+            articleRef.current.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        }, 0);
       } else {
         toast.error(data.message);
       }
@@ -106,7 +113,7 @@ const WriteArticle = () => {
       <div className="w-full max-w-lg p-4 bg-white rounded-lg flex flex-col border border-gray-200 min-h-96 max-h-[600px]">
         <div className="flex items-center gap-3">
           <Edit className="w-5 h-5 text-[#4A7AFF]" />
-          <h1 className="text-xl font-semibold">Generate Article</h1>
+          <h1 className="text-xl font-semibold">Generated Article</h1>
         </div>
         {!content ? (
           <div className="flex-1 flex justify-center items-center">
@@ -116,7 +123,10 @@ const WriteArticle = () => {
             </div>
           </div>
         ) : (
-          <div className="mt-3 h-full overflow-y-scroll text-sm text-slate-600">
+          <div
+            ref={articleRef}
+            className="mt-3 h-full overflow-y-scroll text-sm text-slate-600"
+          >
             <div className="reset-tw">
               <Markdown>{content}</Markdown>
             </div>
