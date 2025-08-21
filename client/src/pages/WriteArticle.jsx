@@ -65,9 +65,9 @@ const WriteArticle = () => {
       >
         <div className="flex items-center gap-3">
           <Sparkles className="w-6 text-[#4A7AFF]" />
-          <h1 className="text-xl font-semibold">Article Configuration</h1>
+          <h1 className="text-xl font-semibold">Chat Configuration</h1>
         </div>
-        <p className="mt-6 text-sm font-semibold">Article Topic</p>
+        <p className="mt-6 text-sm font-semibold">Chat Topic</p>
 
         <input
           onChange={(e) => setInput(e.target.value)}
@@ -78,7 +78,7 @@ const WriteArticle = () => {
           required
         />
 
-        <p className="mt-4 text-sm font-medium">Article Length</p>
+        <p className="mt-4 text-sm font-medium">Chat Length</p>
 
         <div className="mt-3 flex gap-3 flex-wrap sm:max-w-9/11">
           {articleLength.map((item, index) => (
@@ -105,7 +105,7 @@ const WriteArticle = () => {
           ) : (
             <Edit className="w-5" />
           )}
-          Generate Article
+          Generate Chat
         </button>
       </form>
 
@@ -113,13 +113,13 @@ const WriteArticle = () => {
       <div className="w-full max-w-lg p-4 bg-white rounded-lg flex flex-col border border-gray-200 min-h-96 max-h-[600px]">
         <div className="flex items-center gap-3">
           <Edit className="w-5 h-5 text-[#4A7AFF]" />
-          <h1 className="text-xl font-semibold">Generated Article</h1>
+          <h1 className="text-xl font-semibold">Generated Chat</h1>
         </div>
         {!content ? (
           <div className="flex-1 flex justify-center items-center">
             <div className="text-sm flex flex-col items-center gap-5 text-gray-400">
               <Edit className="w-9 h-9" />
-              <p>Enter a topic and click “Generate Article ” to get started</p>
+              <p>Enter a topic and click “Generate Chats ” to get started</p>
             </div>
           </div>
         ) : (
